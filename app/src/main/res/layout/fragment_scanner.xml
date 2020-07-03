@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.ScannerFragment">
+
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <com.varunest.sparkbutton.SparkButton
+            android:id="@+id/btn_active"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            app:sparkbutton_activeImage="@drawable/girlcrop"
+            app:sparkbutton_inActiveImage="@drawable/blakwhite_crop"
+            app:sparkbutton_iconSize="130dp"
+            app:sparkbutton_primaryColor="@color/primary_color"
+            app:sparkbutton_secondaryColor="@color/secondary_color" />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/list"
+            android:layout_below="@id/btn_active"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
