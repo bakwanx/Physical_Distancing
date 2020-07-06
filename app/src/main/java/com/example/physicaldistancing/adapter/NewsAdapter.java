@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.physicaldistancing.R;
+import com.example.physicaldistancing.Web_View;
 import com.example.physicaldistancing.model.NewsModel;
 
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
 
     public class NewsAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ImgNews_view;
-        TextView title_view, content_view, publisdedAt_view, name;
+        TextView title_view, content_view, publisdedAt_view, name, test;
 
         public NewsAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,17 +58,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
             content_view = itemView.findViewById(R.id.content_view);
             publisdedAt_view = itemView.findViewById(R.id.publishedAt_views);
             name = itemView.findViewById(R.id.name_view);
+            test = itemView.findViewById(R.id.test_view);
         }
 
         void bind(NewsModel newsModel){
-
-
             Glide.with(itemView.getContext())
                     .load(newsModel.getUrlImage())
                     .into(ImgNews_view);
             title_view.setText(newsModel.getTitle());
             content_view.setText(newsModel.getContent());
             name.setText(newsModel.getName());
+            test.setText(newsModel.getUrl());
             publisdedAt_view.setText(newsModel.getPublisedAt());
         }
 
@@ -75,11 +76,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
         public void onClick(View view) {
             int i = getAdapterPosition();
             NewsModel newsModel = mData.get(i);
-            if (newsModel.getContent()==null){
-                Intent intent = new Intent(itemView.getContext(), WebView.class);
-                intent.putExtra("kirimUrl",newsModel);
-                itemView.getContext().startActivity(intent);
-            }
+
+            Intent kirimUrl = new Intent(view.getContext(), WebView.class);
+            kirimUrl.putExtra(Web_View.kirimUrl,newsModel);
+            view.getContext().startActivity(kirimUrl);
+
         }
     }
 }

@@ -47,6 +47,13 @@
                     android:text="ini berita"
                     app:layout_constraintTop_toBottomOf="@+id/judul_view"/>
                 <TextView
+                    android:text="sembuh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/content_view"
+                    android:id="@+id/test_view"/>
+
+                <TextView
                     android:id="@+id/name_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +69,6 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     />
             </androidx.constraintlayout.widget.ConstraintLayout>
-            
 
 
         </LinearLayout>

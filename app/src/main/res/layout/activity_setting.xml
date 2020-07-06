@@ -28,4 +28,5 @@
         android:layout_height="wrap_content"
         android:id="@+id/sembuh_view"/>
 
+
 </LinearLayout>

@@ -50,7 +50,7 @@ public class NewsFragment extends Fragment {
 
 
 
-        coronaViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(CoronaViewModel.class);
+        /*coronaViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(CoronaViewModel.class);
         coronaViewModel.getCorona().observe(this, new Observer<ArrayList<CoronaModel>>() {
             @Override
             public void onChanged(ArrayList<CoronaModel> coronaModels) {
@@ -58,7 +58,7 @@ public class NewsFragment extends Fragment {
             }
         });
 
-        coronaViewModel.setCorona();
+        coronaViewModel.setCorona();*/
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         newsAdapter = new NewsAdapter();

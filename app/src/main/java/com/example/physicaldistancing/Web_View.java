@@ -11,6 +11,7 @@ import com.example.physicaldistancing.model.NewsModel;
 public class Web_View extends AppCompatActivity {
 
     private WebView webView;
+    public static final String kirimUrl = "kirim";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,10 +19,18 @@ public class Web_View extends AppCompatActivity {
         setContentView(R.layout.activity_web__view);
         webView = findViewById(R.id.web_view);
 
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);
 
-        NewsModel newsModel = getIntent().getParcelableExtra("kirimUrl");
-        webView.loadUrl(newsModel.getUrl());
+        webView.getSettings().setSupportZoom(true);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setDisplayZoomControls(false);
+
+        NewsModel newsModel = getIntent().getParcelableExtra(kirimUrl);
+        String getUrl = newsModel.getUrl();
         webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl(getUrl);
     }
 
 

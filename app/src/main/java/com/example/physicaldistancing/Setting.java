@@ -2,18 +2,21 @@ package com.example.physicaldistancing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.physicaldistancing.model.CoronaModel;
+import com.example.physicaldistancing.model.NewsModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 public class Setting extends AppCompatActivity {
 
-    private SeekBar seekBar;private TextView positif, meninggal, sembuh;
+    private SeekBar seekBar;
+    private TextView positif, meninggal, sembuh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class Setting extends AppCompatActivity {
         positif = findViewById(R.id.positif_view);
         meninggal = findViewById(R.id.meninggal_view);
         sembuh = findViewById(R.id.sembuh_view);
+
+
 
         String result = "";
 

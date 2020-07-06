@@ -79,6 +79,10 @@ public class NewsModel implements Parcelable {
         }
     };
 
+    public NewsModel() {
+
+    }
+
     public String getName() {
         return name;
     }
