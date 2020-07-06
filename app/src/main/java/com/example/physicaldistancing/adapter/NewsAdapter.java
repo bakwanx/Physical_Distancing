@@ -1,9 +1,11 @@
 package com.example.physicaldistancing.adapter;
 
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,7 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
         return mData.size();
     }
 
-    public class NewsAdapterHolder extends RecyclerView.ViewHolder {
+    public class NewsAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ImgNews_view;
         TextView title_view, content_view, publisdedAt_view, name;
 
@@ -67,7 +69,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
             content_view.setText(newsModel.getContent());
             name.setText(newsModel.getName());
             publisdedAt_view.setText(newsModel.getPublisedAt());
+        }
 
+        @Override
+        public void onClick(View view) {
+            int i = getAdapterPosition();
+            NewsModel newsModel = mData.get(i);
+            if (newsModel.getContent()==null){
+                Intent intent = new Intent(itemView.getContext(), WebView.class);
+                intent.putExtra("kirimUrl",newsModel);
+                itemView.getContext().startActivity(intent);
+            }
         }
     }
 }
