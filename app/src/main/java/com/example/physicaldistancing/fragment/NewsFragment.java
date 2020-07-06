@@ -71,18 +71,17 @@ public class NewsFragment extends Fragment {
             public void onChanged(ArrayList<NewsModel> newsModels) {
                 if (newsModels != null){
                     newsAdapter.setNews(newsModels);
+                    Loading(false);
                 }
             }
         });
 
         newsViewModel.setNewsShow();
-        Loading(true);
-
         return view;
     }
 
     private void Loading(Boolean progress){
-        if (progress){
+        if (progress == true){
             progressBar.setVisibility(View.VISIBLE);
         }else {
             progressBar.setVisibility(View.GONE);
