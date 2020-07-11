@@ -3,6 +3,7 @@ package com.example.physicaldistancing;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -17,6 +18,9 @@ public class Web_View extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web__view);
+
+        getSupportActionBar().hide();
+
         webView = findViewById(R.id.web_view);
 
         webView.getSettings().setLoadsImagesAutomatically(true);
@@ -32,6 +36,9 @@ public class Web_View extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(getUrl);
     }
+
+
+
 
 
 }

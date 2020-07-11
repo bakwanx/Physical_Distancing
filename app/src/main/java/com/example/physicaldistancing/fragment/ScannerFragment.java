@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,10 +24,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.physicaldistancing.KalmanFilter;
 import com.example.physicaldistancing.R;
+import com.example.physicaldistancing.Setting;
 import com.varunest.sparkbutton.SparkButton;
 import com.varunest.sparkbutton.SparkButtonBuilder;
 import com.varunest.sparkbutton.SparkEventListener;
@@ -47,6 +51,9 @@ public class ScannerFragment extends Fragment {
     private KalmanFilter kalmanFilter;
     private static final double KALMAN_R = 0.125d;
     private static final double KALMAN_Q = 0.5d;
+    private Bundle bundle;
+    private TextView progress_tv;
+    private int progress;
 
 
 
@@ -64,6 +71,7 @@ public class ScannerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scanner, container, false);
+        bundle = getActivity().getIntent().getExtras();
 
         return view;
     }
@@ -72,9 +80,23 @@ public class ScannerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+
         btn_active = getActivity().findViewById(R.id.btn_active);
         scanListView = getActivity().findViewById(R.id.list);
         kalmanFilter = new KalmanFilter(KALMAN_R,KALMAN_Q);
+        progress_tv = getActivity().findViewById(R.id.progress_view);
+
+        Intent intent = getActivity().getIntent();
+
+        try {
+            progress = intent.getExtras().getInt("kirim");
+            progress_tv.setText(String.valueOf(progress));
+        } catch (Exception e) {
+            e.printStackTrace();
+            progress = 0;
+            progress_tv.setText("0");
+        }
+
 
         final Timer timer = new Timer();
 
@@ -116,6 +138,7 @@ public class ScannerFragment extends Fragment {
 
 
         BroadcastReceiver receiver = new BroadcastReceiver() {
+
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
@@ -124,8 +147,15 @@ public class ScannerFragment extends Fragment {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     kalmanFilter.applyFilter(rssi);
                     String rrsiString = Double.toString(rssi);
-                    if (rssi>-75){
+                    MediaPlayer player;
+                    player = MediaPlayer.create(getContext().getApplicationContext(),R.raw.ringtone);
+
+                    if (rssi>-progress){
                         //vibrate.run();
+                        player.start();;
+                    }else{
+                        player.release();
+                        player = null;
                     }
                     stringArrayList.add(rrsiString);
                     arrayAdapter.notifyDataSetChanged();
@@ -139,6 +169,10 @@ public class ScannerFragment extends Fragment {
         arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_list_item_1,stringArrayList);
         scanListView.setAdapter(arrayAdapter);
 
+
+    }
+
+    private void ringtone (){
 
     }
 

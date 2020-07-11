@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,11 +29,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
 
         adapter = new ViewPagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount());
-        adapter.AddFragment("Scanner");
-        adapter.AddFragment("News");
+        String news = getString(R.string.news);
+        String scanner = getString(R.string.scanner);
+        adapter.AddFragment(scanner);
+        adapter.AddFragment(news);
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
 
@@ -53,4 +58,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
 
     }
+
+
 }

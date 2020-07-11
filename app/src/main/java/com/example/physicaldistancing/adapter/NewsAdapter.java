@@ -1,6 +1,7 @@
 package com.example.physicaldistancing.adapter;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,7 +49,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
 
     public class NewsAdapterHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageView ImgNews_view;
-        TextView title_view, content_view, publisdedAt_view, name, test;
+        TextView title_view, content_view, publisdedAt_view, name;
 
         public NewsAdapterHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,17 +59,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
             content_view = itemView.findViewById(R.id.content_view);
             publisdedAt_view = itemView.findViewById(R.id.publishedAt_views);
             name = itemView.findViewById(R.id.name_view);
-            test = itemView.findViewById(R.id.test_view);
+
+            itemView.setOnClickListener(this);
         }
 
         void bind(NewsModel newsModel){
-            Glide.with(itemView.getContext())
-                    .load(newsModel.getUrlImage())
-                    .into(ImgNews_view);
+            if (newsModel.getUrlImage().equals("null")){
+                ImgNews_view.setImageDrawable(itemView.getResources().getDrawable(R.drawable.blackwhitegirl));
+            }else{
+                Glide.with(itemView.getContext())
+                        .load(newsModel.getUrlImage())
+                        .into(ImgNews_view);
+            }
+
             title_view.setText(newsModel.getTitle());
-            content_view.setText(newsModel.getContent());
+
+            if (newsModel.getContent().equals("null")){
+                content_view.setText("");
+            }else {
+                content_view.setText(newsModel.getContent());
+            }
             name.setText(newsModel.getName());
-            test.setText(newsModel.getUrl());
             publisdedAt_view.setText(newsModel.getPublisedAt());
         }
 
@@ -77,9 +88,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsAdapterHol
             int i = getAdapterPosition();
             NewsModel newsModel = mData.get(i);
 
-            Intent kirimUrl = new Intent(view.getContext(), WebView.class);
+            Intent kirimUrl = new Intent(itemView.getContext(), Web_View.class);
             kirimUrl.putExtra(Web_View.kirimUrl,newsModel);
-            view.getContext().startActivity(kirimUrl);
+            itemView.getContext().startActivity(kirimUrl);
 
         }
     }

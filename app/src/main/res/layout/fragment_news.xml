@@ -5,37 +5,50 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context=".fragment.NewsFragment">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <ImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:id="@+id/up_pic"
-                android:scaleType="fitXY"
-                android:src="@drawable/blackwhitegirl"/>
+                android:layout_height="200dp"
+                android:background="#f4f1e4"
+                android:orientation="vertical">
+                <com.anychart.AnyChartView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/any_chart_view"/>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pb_corona"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="210dp"
                 app:cardCornerRadius="13dp"
-                app:cardElevation="10dp"
                 android:clickable="true"
                 android:layout_marginBottom="10dp"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:layout_below="@+id/up_pic">
+                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:id="@+id/tv_rc"
                         tools:listitem="@layout/cardview"/>
                 </LinearLayout>
@@ -44,13 +57,17 @@
 
 
     </ScrollView>
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progres_bar"
         android:visibility="gone"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_weight="1"/>
+
 
 
 

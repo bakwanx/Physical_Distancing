@@ -9,6 +9,10 @@
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_view"/>
         <com.varunest.sparkbutton.SparkButton
             android:id="@+id/btn_active"
             android:layout_width="400dp"

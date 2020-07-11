@@ -17,9 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Web_View">
-
         </activity>
-        <activity android:name=".Setting" />
+        <activity android:name=".Setting" >
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
